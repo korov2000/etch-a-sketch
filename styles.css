@@ -1,0 +1,17 @@
+h1, p {
+	text-align: center;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	width: 82vh;
+	height: 82vh;
+	border: 1px solid black;
+	margin: 0 auto;
+}
+
+.square {
+	flex-shrink: 1;
+	flex-grow: 1;
+}
