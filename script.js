@@ -11,6 +11,15 @@ function createGrid (squaresPerSide = 16) {
 	}
 }
 
+function removeGrid() {
+	const container = document.querySelector(".container");
+	const squares = document.querySelectorAll(".square");
+
+	squares.forEach((square) => {
+		container.removeChild(square);
+	})
+}
+
 function drawLine () {
 	const squares = document.querySelectorAll(".square");
 
@@ -21,6 +30,24 @@ function drawLine () {
 	})
 
 }
+
+const numOfSquares = document.querySelector(".num-of-squares");
+
+numOfSquares.addEventListener("click", () => {
+	let num = prompt("Enter number of squares per line\nbetween 2 and 100:");
+
+	let keepGoing = true;
+	while(keepGoing) {
+		if (num >= 2 && num <= 100) {
+			removeGrid();
+			createGrid(num);
+			drawLine();
+			keepGoing = false;
+		} else {
+			num = prompt("Enter number of squares per line\n between 2 and 100:"); 
+		}
+	}
+});
 
 createGrid();
 drawLine();
