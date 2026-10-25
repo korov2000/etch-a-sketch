@@ -1,5 +1,3 @@
-// potrebno je napraviti grid od 16 x 16 kvadrata, to znači 156 kvadrata
-
 function createGrid (squaresPerSide = 16) {
 	const container = document.querySelector(".container");
 	const flexBasis = 100 / squaresPerSide;
@@ -8,9 +6,21 @@ function createGrid (squaresPerSide = 16) {
 	for (let i = 0; i < numberOfSquares; i++) {
 		const square = document.createElement("div");
 		square.setAttribute("class", "square");
-		square.style = `flex-basis: ${flexBasis}%;`;
+		square.style.flexBasis = `${flexBasis}%`;
 		container.appendChild(square);
 	}
 }
 
+function drawLine () {
+	const squares = document.querySelectorAll(".square");
+
+	squares.forEach((square) => {
+			square.addEventListener("mouseenter", () => {
+				square.style.backgroundColor = "red";
+			});
+	})
+
+}
+
 createGrid();
+drawLine();
