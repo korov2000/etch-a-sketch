@@ -23,18 +23,21 @@ function removeGrid() {
 	});
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function drawLine () {
 	const squares = document.querySelectorAll(".square");
 
 	squares.forEach((square) => {
 			square.addEventListener("mouseenter", () => {
-				square.style.backgroundColor = "red";
+				square.style.backgroundColor = `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
 			});
 	});
 }
 
 const numOfSquares = document.querySelector(".num-of-squares");
-
 numOfSquares.addEventListener("click", () => {
 	let num = prompt("Enter number of squares per line between 2 and 100:");
 
@@ -52,7 +55,6 @@ numOfSquares.addEventListener("click", () => {
 });
 
 const resetButton = document.querySelector(".reset");
-
 resetButton.addEventListener("click", () => {
 			removeGrid();
 			createGrid();
