@@ -1,44 +1,9 @@
-function createGrid (squaresPerSide = 16) {
-	const container = document.querySelector(".container");
-	const flexBasis = 100 / squaresPerSide;
-	const numberOfSquares = squaresPerSide * squaresPerSide;
+const container = document.querySelector(".container");
+createGrid();
+drawLine();
 
-	for (let i = 0; i < numberOfSquares; i++) {
-		const square = document.createElement("div");
-		square.setAttribute("class", "square");
-		square.style.flexBasis = `${flexBasis}%`;
-		container.appendChild(square);
-	}
-
-	const message = document.querySelector(".message");
-	message.textContent = `Move around a mouse on a ${squaresPerSide} x ${squaresPerSide} grid, and you will see a trail where mouse passes.`
-}
-
-function removeGrid() {
-	const container = document.querySelector(".container");
-	const squares = document.querySelectorAll(".square");
-
-	squares.forEach((square) => {
-		container.removeChild(square);
-	});
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function drawLine () {
-	const squares = document.querySelectorAll(".square");
-
-	squares.forEach((square) => {
-			square.addEventListener("mouseenter", () => {
-				square.style.backgroundColor = `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
-			});
-	});
-}
-
-const numOfSquares = document.querySelector(".num-of-squares");
-numOfSquares.addEventListener("click", () => {
+const numOfSquaresButton = document.querySelector(".num-of-squares");
+numOfSquaresButton.addEventListener("click", () => {
 	let num = prompt("Enter number of squares per line between 2 and 100:");
 
 	let keepGoing = true;
@@ -61,5 +26,42 @@ resetButton.addEventListener("click", () => {
 			drawLine();
 });
 
-createGrid();
-drawLine();
+function createGrid (squaresPerSide = 16) {
+	const flexBasis = 100 / squaresPerSide;
+	const numberOfSquares = squaresPerSide * squaresPerSide;
+
+	for (let i = 0; i < numberOfSquares; i++) {
+		const square = document.createElement("div");
+		square.setAttribute("class", "square");
+		square.style.flexBasis = `${flexBasis}%`;
+		container.appendChild(square);
+	}
+
+	const message = document.querySelector(".message");
+	message.textContent = `Move around a mouse on a ${squaresPerSide} x ${squaresPerSide} grid, and you will see a trail where mouse passes.`
+}
+
+function removeGrid() {
+	const squares = document.querySelectorAll(".square");
+	squares.forEach((square) => {
+		container.removeChild(square);
+	});
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function drawLine () {
+	const squares = document.querySelectorAll(".square");
+	let opacity = 10;
+	squares.forEach((square) => {
+			square.addEventListener("mouseenter", () => {
+				square.style.backgroundColor = `rgb(${getRandomInt(256)}, ${getRandomInt(256)}, ${getRandomInt(256)})`;
+				square.style.opacity = `${opacity}%`;
+				if (opacity < 100) {
+					opacity += 2;
+				}
+			});
+	});
+}
