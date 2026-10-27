@@ -34,7 +34,7 @@ function drawLine () {
 const numOfSquares = document.querySelector(".num-of-squares");
 
 numOfSquares.addEventListener("click", () => {
-	let num = prompt("Enter number of squares per line\nbetween 2 and 100:");
+	let num = prompt("Enter number of squares per line between 2 and 100:");
 
 	let keepGoing = true;
 	while(keepGoing) {
@@ -44,7 +44,7 @@ numOfSquares.addEventListener("click", () => {
 			drawLine();
 			keepGoing = false;
 		} else {
-			num = prompt("Enter number of squares per line\n between 2 and 100:"); 
+			num = prompt("Wrong entry!\nEnter number of squares per line between 2 and 100:"); 
 		}
 	}
 });
