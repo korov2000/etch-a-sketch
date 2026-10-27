@@ -9,6 +9,9 @@ function createGrid (squaresPerSide = 16) {
 		square.style.flexBasis = `${flexBasis}%`;
 		container.appendChild(square);
 	}
+
+	const message = document.querySelector(".message");
+	message.textContent = `Move around a mouse on a ${squaresPerSide} x ${squaresPerSide} grid, and you will see a trail where mouse passes.`
 }
 
 function removeGrid() {
@@ -17,7 +20,7 @@ function removeGrid() {
 
 	squares.forEach((square) => {
 		container.removeChild(square);
-	})
+	});
 }
 
 function drawLine () {
@@ -27,8 +30,7 @@ function drawLine () {
 			square.addEventListener("mouseenter", () => {
 				square.style.backgroundColor = "red";
 			});
-	})
-
+	});
 }
 
 const numOfSquares = document.querySelector(".num-of-squares");
@@ -47,6 +49,14 @@ numOfSquares.addEventListener("click", () => {
 			num = prompt("Wrong entry!\nEnter number of squares per line between 2 and 100:"); 
 		}
 	}
+});
+
+const resetButton = document.querySelector(".reset");
+
+resetButton.addEventListener("click", () => {
+			removeGrid();
+			createGrid();
+			drawLine();
 });
 
 createGrid();
